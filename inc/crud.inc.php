@@ -18,7 +18,12 @@
         $time = mysqli_real_escape_string($conn, $_POST['time']);
         $status = mysqli_real_escape_string($conn, $_POST['status']);
 
-        // Insert Query
+        // Insert Record
+        insertRecord($activity, $date, $time, $status, $conn);
+    }
+
+    // Insert Function
+    function insertRecord($activity, $date, $time, $status, $conn){
         $iquery = "INSERT INTO data(activity,date1,time1,status1) VALUES('$activity','$date','$time','$status')";
         
         // Error Handling
@@ -33,6 +38,5 @@
         catch(Exception $e){
             echo "\nException Caught : ".$e->getMessage();
         }
-        
     }
 ?>
