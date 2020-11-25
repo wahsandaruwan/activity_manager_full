@@ -64,7 +64,7 @@
                 </div>
             </form>
             <!-- Message -->
-            <div class="msg"></div>
+            <div class="msg" name="message"></div>
         </div>
 
         <!-- Table Secion -->
