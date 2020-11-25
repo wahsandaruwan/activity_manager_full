@@ -87,110 +87,21 @@
                         <th>Delete</th>
                     </tr>
 
-                    <tr>
-                        <td>1</td>
-                        <td>Read the Sherlock Book</td>
-                        <td>2020-11-05</td>
-                        <td>16:40:00</td>
-                        <td>Yes</td>
-                        <td><a href="#" class="edit">Edit</a></td>
-                        <td><a href="#" class="delete">Delete</a></td>
-                    </tr>
-
-                    <tr>
-                        <td>2</td>
-                        <td>Watch the Supernatural</td>
-                        <td>2020-11-06</td>
-                        <td>10:30:00</td>
-                        <td>Pending</td>
-                        <td><a href="#" class="edit">Edit</a></td>
-                        <td><a href="#" class="delete">Delete</a></td>
-                    </tr>
-
-                    <tr>
-                        <td>3</td>
-                        <td>Study Mathematics</td>
-                        <td>2020-11-07</td>
-                        <td>12:20:00</td>
-                        <td>No</td>
-                        <td><a href="#" class="edit">Edit</a></td>
-                        <td><a href="#" class="delete">Delete</a></td>
-                    </tr>
-
-                    <tr>
-                        <td>4</td>
-                        <td>Read the Sherlock Book</td>
-                        <td>2020-11-05</td>
-                        <td>16:40:00</td>
-                        <td>No</td>
-                        <td><a href="#" class="edit">Edit</a></td>
-                        <td><a href="#" class="delete">Delete</a></td>
-                    </tr>
-
-                    <tr>
-                        <td>5</td>
-                        <td>Study Mathematics</td>
-                        <td>2020-11-07</td>
-                        <td>12:20:00</td>
-                        <td>No</td>
-                        <td><a href="#" class="edit">Edit</a></td>
-                        <td><a href="#" class="delete">Delete</a></td>
-                    </tr>
-
-                    <tr>
-                        <td>6</td>
-                        <td>Read the Sherlock Book</td>
-                        <td>2020-11-05</td>
-                        <td>16:40:00</td>
-                        <td>No</td>
-                        <td><a href="#" class="edit">Edit</a></td>
-                        <td><a href="#" class="delete">Delete</a></td>
-                    </tr>
-                    <tr>
-                        <td>6</td>
-                        <td>Read the Sherlock Book</td>
-                        <td>2020-11-05</td>
-                        <td>16:40:00</td>
-                        <td>No</td>
-                        <td><a href="#" class="edit">Edit</a></td>
-                        <td><a href="#" class="delete">Delete</a></td>
-                    </tr>
-                    <tr>
-                        <td>6</td>
-                        <td>Read the Sherlock Book</td>
-                        <td>2020-11-05</td>
-                        <td>16:40:00</td>
-                        <td>No</td>
-                        <td><a href="#" class="edit">Edit</a></td>
-                        <td><a href="#" class="delete">Delete</a></td>
-                    </tr>
-
-                    <tr>
-                        <td>6</td>
-                        <td>Read the Sherlock Book</td>
-                        <td>2020-11-05</td>
-                        <td>16:40:00</td>
-                        <td>No</td>
-                        <td><a href="#" class="edit">Edit</a></td>
-                        <td><a href="#" class="delete">Delete</a></td>
-                    </tr><tr>
-                        <td>6</td>
-                        <td>Read the Sherlock Book</td>
-                        <td>2020-11-05</td>
-                        <td>16:40:00</td>
-                        <td>No</td>
-                        <td><a href="#" class="edit">Edit</a></td>
-                        <td><a href="#" class="delete">Delete</a></td>
-                    </tr>
-                    <tr>
-                        <td>6</td>
-                        <td>Read the Sherlock Book</td>
-                        <td>2020-11-05</td>
-                        <td>16:40:00</td>
-                        <td>No</td>
-                        <td><a href="#" class="edit">Edit</a></td>
-                        <td><a href="#" class="delete">Delete</a></td>
-                    </tr>
+                    <tbody>
+                        <?php 
+                        $result = selectRecords($conn);
+                        while($row = mysqli_fetch_array($result)) {?>
+                            <tr>
+                                <td><?php echo $row['id']; ?></td>
+                                <td><?php echo $row['activity']; ?></td>
+                                <td><?php echo $row['date1']; ?></td>
+                                <td><?php echo $row['time1']; ?></td>
+                                <td><?php echo $row['status1']; ?></td>
+                                <td><a href="#" class="edit">Edit</a></td>
+                                <td><a href="#" class="delete">Delete</a></td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
                 </table>
             </div>
         </div>

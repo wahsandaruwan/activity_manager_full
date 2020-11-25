@@ -39,4 +39,22 @@
             echo "\nException Caught : ".$e->getMessage();
         }
     }
+
+    // Select Function
+    function selectRecords($conn){
+        $squery = "SELECT * FROM data";
+        $result = mysqli_query($conn, $squery);
+        // Error Handling
+        try{
+            if(!$result){
+                throw new Exception('Cannot select data from the database!');
+            }
+            else{
+                return $result;
+            }
+        }
+        catch(Exception $e){
+            echo "\nException Caught : ".$e->getMessage();
+        }
+    }
 ?>
