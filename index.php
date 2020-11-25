@@ -63,8 +63,16 @@
                     <button type="submit" name="save" class="sbtn">Save Activity</button>
                 </div>
             </form>
+
             <!-- Message -->
-            <div class="msg" name="message"></div>
+            <div class="msg" name="message">
+                <?php 
+                    if(isset($_SESSION['msg'])){ 
+                        echo '<p style = "background:#fff; font-weight: 500; color:'.$_SESSION['color'].'; padding: 8px 12px;">'.$_SESSION['msg'].'</p>';
+                        session_unset();
+                    }
+                ?>
+            </div>
         </div>
 
         <!-- Table Secion -->
@@ -89,8 +97,10 @@
 
                     <tbody>
                         <?php 
+                        // Populate Table
                         $result = selectRecords($conn);
-                        while($row = mysqli_fetch_array($result)) {?>
+                        while($row = mysqli_fetch_array($result)) {
+                        ?>
                             <tr>
                                 <td><?php echo $row['id']; ?></td>
                                 <td><?php echo $row['activity']; ?></td>

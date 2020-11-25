@@ -1,5 +1,7 @@
 <!-- Crud Operations -->
 <?php
+    // Start a Session
+    session_start();
     // DB Connection
     include 'dbh.inc.php';
 
@@ -32,6 +34,8 @@
                 throw new Exception('Cannot insert the data into database!');
             }
             else{
+                $_SESSION['msg'] = "Activity Succesfully Added!";
+                $_SESSION['color'] = "#0e5e0e";
                 header('location: ../index.php');
             }
         }
