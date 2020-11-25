@@ -1,0 +1,299 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
+
+/* ----------Reset---------- */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* ---------Whole Doc---------- */
+body{
+    background: #f39c12;
+    height: 100vh;
+}
+
+/* -------Header------- */
+header{
+    width: 100%;
+    background: #1c1c1c;
+}
+
+/* -----Navigation----- */
+header nav{
+    width: 50%;
+    margin: 0 auto;
+    padding: 10px 50px;
+    background: #1c1c1c;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Logo */
+header nav .logo{
+    flex-basis: 50%;
+    color: #fff;
+    font-size: 1.3em;
+    text-transform: uppercase;
+}
+
+header nav .logo span{
+    background: #fff;
+    color: #1c1c1c;
+    padding: 8px;
+}
+
+/* Nav Bar */
+header nav .menu{
+    flex-basis: 50%;
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+header nav .menu li{
+    margin-left: 10px;
+}
+
+header nav .menu li a{
+    text-decoration: none;
+    color: #fff;
+    font-size: 0.8rem;
+    padding: 5px 8px;
+    background-color: #f39c12;
+    transition: all 0.3s ease-in;
+}
+
+header nav .menu li a:hover{
+    background-color: #95a5a6;
+}
+
+/* -------Container------- */
+.container{
+    background: #fff;
+    position: absolute;
+    top: 150px;
+    left: 50%;
+    transform: translate(-50%);
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 30px;
+}
+
+/* -----Form Section----- */
+.inputfrm{
+    width: 45%;
+    background:#1c1c1c;
+    padding: 30px;
+    margin-right: 20px;
+}
+
+/* Inputs */
+.inputfrm .ui{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 10px 0;
+}
+
+.inputfrm .ui input,
+.inputfrm .ui select{
+    width: 75%;
+    height: 35px;
+    border: none;
+    padding: 5px 20px;
+    background: #fff;
+    outline: none;
+    font-size: 1rem;
+}
+
+.inputfrm .ui label{
+    width: 20%;
+    color: #fff;
+    font-size: 1rem;
+    margin-right: 10px;
+}
+
+/* Button */
+.inputfrm .ui .sbtn{
+    width: 100%;
+    background: #f39c12;
+    padding: 10px 20px;
+    text-align: center;
+    color: #1c1c1c;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease-in;
+}
+
+.inputfrm .ui .sbtn:hover{
+    background: #95a5a6;
+}
+
+/* -----Table Section----- */
+.tab{
+    width: 55%;
+    font-weight: 300;
+    background: #1c1c1c;
+    padding: 30px;
+    text-align: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* Search */
+.tab .search{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.tab .search input{
+    width: 70%;
+    font-size: 1rem;
+    padding: 5px 20px;
+    border: none;
+    outline: none;
+    height: 35px;
+}
+
+.tab .search a{
+    width: 25%;
+    height: 35px;
+    text-decoration: none;
+    color: #1c1c1c;
+    background: #f39c12;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    transition: all 0.3s ease-in; 
+}
+
+.tab .search a:hover{
+    background: #95a5a6;
+}
+
+/* Actual Table */
+.tab .main{
+    width: 100%;
+    height: 240px;
+    padding: 15px;
+    background: #fff;
+    overflow-y: auto;
+}
+
+.tab table{
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    background: #fff;
+}
+
+.tab table th{
+    background: #f39c12;
+    font-size: 1rem;
+}
+
+.tab table tr th,
+.tab table tr td{
+    padding: 5px;
+    border-right: 1px #f39c12 solid;
+    border-left: 1px #f39c12 solid;
+    border-bottom: 1px #f39c12 solid;
+}
+
+.tab table tr td{
+    font-size: 0.9rem;
+}
+
+.tab table tr td a{
+    background:#f39c12;
+    text-decoration: none;
+    text-align: center;
+    color: #fff;
+    display: block;
+    font-size: 0.9rem;
+    padding: 3px 5px;
+    transition: all 0.3s ease-in;
+}
+
+.tab table tr td .delete{
+    background:#1c1c1c;
+}
+
+.tab table tr td a:hover{
+    background: #95a5a6;
+    color: #1c1c1c;
+}
+
+/* ---------Responsive---------- */
+@media(max-width: 1040px){
+    /* -------Navigation------- */
+    header nav{
+        width: 100%;
+        flex-direction: column;
+    }
+
+    header nav .logo,
+    header nav .menu{
+        margin: 20px 0;
+    }
+
+    header nav .menu li{
+        margin: 0 5px;
+    }
+
+    /* -------Container------- */
+    .container{
+        width: 80%;
+        display: block;
+
+    }
+
+    .container .inputfrm,
+    .container .tab{
+        width: 100%;
+    }
+
+    /* -------Common------- */
+    .tab table tr th,
+    .tab table tr td,
+    .tab table tr a,
+    .tab .search input,
+    .tab .search a,
+    .inputfrm .ui input,
+    .inputfrm .ui select,
+    .inputfrm .ui label,
+    .inputfrm .ui a{
+        font-size: 0.8rem;
+    }
+}
+
+@media(max-width: 550px){
+    /* -------Container------- */
+    .container{
+        width: 98%;
+        padding: 15px;
+    }
+
+    .inputfrm .ui input,
+    .inputfrm .ui select{
+        width: 70%;
+    }
+
+    .inputfrm .ui label{
+        width: 25%;
+    }
+}
