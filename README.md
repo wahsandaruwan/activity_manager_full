@@ -1,6 +1,6 @@
-## Complete Activity Management App
+## Simple Activity Management App
 
-### This is a Simple Activity Management App in PHP
+### This is a Complete Simple Activity Management App in PHP
 
 #### Technologies Used
 * HTML

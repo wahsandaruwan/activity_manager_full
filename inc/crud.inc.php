@@ -18,11 +18,13 @@
         $time = mysqli_real_escape_string($conn, $_POST['time']);
         $status = mysqli_real_escape_string($conn, $_POST['status']);
 
-        $query = "INSERT INTO data(activity,date1,time1,status1) VALUES('$activity','$date','$time','$status')";
+        // Insert Query
+        $iquery = "INSERT INTO data(activity,date1,time1,status1) VALUES('$activity','$date','$time','$status')";
         
+        // Error Handling
         try{
-            if(!mysqli_query($conn, $query)){
-                throw new Exception('Cannot run the sql query inside the database');
+            if(!mysqli_query($conn, $iquery)){
+                throw new Exception('Cannot insert the data into database!');
             }
             else{
                 header('location: ../index.php');
