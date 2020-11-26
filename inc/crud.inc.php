@@ -11,8 +11,9 @@
     $time = "";
     $status = "";
     $id = 0;
+    $edit_state = false;
 
-    // When Form Submit Button Clicked
+    // When Form Submit Button Clicked for Save Activity
     if(isset($_POST['save'])){
         // Define Variables
         $activity = mysqli_real_escape_string($conn, $_POST['activity']);
@@ -22,6 +23,19 @@
 
         // Insert Record
         insertRecord($activity, $date, $time, $status, $conn);
+    }
+
+    // When Form Submit Button Clicked for Update Activity
+    if(isset($_POST['update'])){
+        // Define Variables
+        $activity = mysqli_real_escape_string($conn, $_POST['activity']);
+        $date = mysqli_real_escape_string($conn, $_POST['date']);
+        $time = mysqli_real_escape_string($conn, $_POST['time']);
+        $status = mysqli_real_escape_string($conn, $_POST['status']);
+        $id = $_SESSION['id'];
+
+        // Update Record
+        updateRecord($activity, $date, $time, $status, $id, $conn);
     }
 
     // Insert Function
@@ -55,6 +69,27 @@
             }
             else{
                 return $result;
+            }
+        }
+        catch(Exception $e){
+            echo "\nException Caught : ".$e->getMessage();
+        }
+    }
+
+    // Update Function
+    function updateRecord($activity, $date, $time, $status, $id, $conn){
+        echo '$id';
+        $uquery = "UPDATE data SET activity='$activity', date1='$date', time1='$time', status1='$status' WHERE id=$id";
+        
+        // Error Handling
+        try{
+            if(!mysqli_query($conn, $uquery)){
+                throw new Exception('Cannot update the data of the selected record!');
+            }
+            else{
+                $_SESSION['msg'] = "Activity Succesfully Updated!";
+                $_SESSION['color'] = "#0e5e0e";
+                header('location: ../index.php');
             }
         }
         catch(Exception $e){

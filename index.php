@@ -3,6 +3,35 @@
     include './inc/dbh.inc.php';
     // CRUD File
     include './inc/crud.inc.php';
+
+    // Fetch the record to be updated
+    if(isset($_GET['edit'])){
+        $id = $_GET['edit'];
+        $edit_state = true;
+
+        $rec = mysqli_query($conn, "SELECT * FROM data WHERE id = $id");
+
+         // Error Handling
+         try{
+            if(!$rec){
+                throw new Exception('Cannot Fetch the Record!');
+            }
+            else{
+                $record = mysqli_fetch_array($rec);
+                $id = $record['id'];
+                $activity = $record['activity'];
+                $date = $record['date1'];
+                $time = $record['time1'];
+                $status = $record['status1'];
+
+                $_SESSION['id'] = $record['id'];
+            }
+        }
+        catch(Exception $e){
+            echo "\nException Caught : ".$e->getMessage();
+        }
+        
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,27 +60,27 @@
             <form action="./inc/crud.inc.php" method = "POST">
                 <div class="ui">
                     <label>ID : </label>
-                    <input type="text" name = "id" disabled>
+                    <input type="text" name = "id" value = "<?php echo $id; ?>" disabled>
                 </div>
 
                 <div class="ui">
                     <label>Activity : </label>
-                    <input type="text" name = "activity">
+                    <input type="text" name = "activity" value = "<?php echo $activity ?>">
                 </div>
 
                 <div class="ui">
                     <label>Date : </label>
-                    <input type="date" name = "date">
+                    <input type="date" name = "date" value = "<?php echo $date ?>">
                 </div>
 
                 <div class="ui">
                     <label>Time : </label>
-                    <input type="time" name = "time">
+                    <input type="time" name = "time" value = "<?php echo $time ?>">
                 </div>
 
                 <div class="ui sel">
                     <label>Status : </label>
-                    <select name="status" id="">
+                    <select name="status" id="" value = "<?php echo $status ?>">
                         <option value="no">No</option>
                         <option value="yes">Yes</option>
                         <option value="pending">Pending</option>
@@ -60,7 +89,12 @@
                 </div>
 
                 <div class="ui">
-                    <button type="submit" name="save" class="sbtn">Save Activity</button>
+                    <?php if($edit_state ==  false){ ?>
+                            <button type="submit" name="save" class="sbtn">Save Activity</button>
+                    <?php }
+                          else{ ?>
+                            <button type="submit" name="update" class="sbtn">Update Activity</button>
+                    <?php } ?>
                 </div>
             </form>
 
@@ -107,7 +141,7 @@
                                 <td><?php echo $row['date1']; ?></td>
                                 <td><?php echo $row['time1']; ?></td>
                                 <td><?php echo $row['status1']; ?></td>
-                                <td><a href="#" class="edit">Edit</a></td>
+                                <td><a href="index.php?edit=<?php echo $row['id']; ?>" class="edit">Edit</a></td>
                                 <td><a href="#" class="delete">Delete</a></td>
                             </tr>
                         <?php } ?>
