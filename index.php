@@ -30,7 +30,6 @@
         catch(Exception $e){
             echo "\nException Caught : ".$e->getMessage();
         }
-        
     }
 ?>
 <!DOCTYPE html>
