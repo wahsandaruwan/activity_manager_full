@@ -48,7 +48,7 @@
             <div class="logo">Activity <span>Manager</span></div>
             <ul class="menu">
                 <li><a href="#">Help</a></li>
-                <li><a href="#">Contact Us</a></li>
+                <li><a href="./index.php">Refresh</a></li>
             </ul>
         </nav>
     </header>
