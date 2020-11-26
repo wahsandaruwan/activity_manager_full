@@ -74,7 +74,7 @@
     function selectRecords($conn){
         $squery = "SELECT * FROM data";
         $result = mysqli_query($conn, $squery);
-        
+
         // Error Handling
         try{
             if(!$result){
@@ -133,5 +133,17 @@
             $_SESSION['msg'] = $e->getMessage();
             $_SESSION['color'] = "#f32112";
         }
+    }
+
+    // Status Selecting Function
+    function selectdCheck($value1,$value2)
+    {
+        if ($value1 == $value2){
+            echo 'selected="selected"';
+        } 
+        else {
+            echo '';
+        }
+        return;
     }
 ?>

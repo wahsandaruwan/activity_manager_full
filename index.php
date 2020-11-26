@@ -80,11 +80,11 @@
 
                 <div class="ui sel">
                     <label>Status : </label>
-                    <select name="status" id="" value = "<?php echo $status ?>">
-                        <option value="no">No</option>
-                        <option value="yes">Yes</option>
-                        <option value="pending">Pending</option>
-                        <option value="expired">Expired</option>
+                    <select name="status" id="">
+                        <option <?php selectdCheck($status,'no'); ?> value="no">No</option>
+                        <option <?php selectdCheck($status,'yes'); ?> value="yes">Yes</option>
+                        <option <?php selectdCheck($status,'pending'); ?> value="pending">Pending</option>
+                        <option <?php selectdCheck($status,'expired'); ?> value="expired">Expired</option>
                     </select>
                 </div>
 
