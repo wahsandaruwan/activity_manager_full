@@ -4,7 +4,7 @@
     // CRUD File
     include './inc/crud.inc.php';
 
-    // Fetch the record to be updated
+    // Fetch the Record to be Updated
     if(isset($_GET['edit'])){
         $id = $_GET['edit'];
         $edit_state = true;
@@ -28,7 +28,8 @@
             }
         }
         catch(Exception $e){
-            echo "\nException Caught : ".$e->getMessage();
+            $_SESSION['msg'] = $e->getMessage();
+            $_SESSION['color'] = "#f32112";
         }
     }
 ?>
@@ -141,7 +142,7 @@
                                 <td><?php echo $row['time1']; ?></td>
                                 <td><?php echo $row['status1']; ?></td>
                                 <td><a href="index.php?edit=<?php echo $row['id']; ?>" class="edit">Edit</a></td>
-                                <td><a href="#" class="delete">Delete</a></td>
+                                <td><a href="index.php?delete=<?php echo $row['id']; ?>" class="delete">Delete</a></td>
                             </tr>
                         <?php } ?>
                     </tbody>

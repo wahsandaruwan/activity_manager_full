@@ -13,7 +13,7 @@
     $id = 0;
     $edit_state = false;
 
-    // When Form Submit Button Clicked for Save Activity
+    // When Form Submit Button Clicked for Insert an Activity
     if(isset($_POST['save'])){
         // Define Variables
         $activity = mysqli_real_escape_string($conn, $_POST['activity']);
@@ -25,7 +25,7 @@
         insertRecord($activity, $date, $time, $status, $conn);
     }
 
-    // When Form Submit Button Clicked for Update Activity
+    // When Form Submit Button Clicked for Update an Activity
     if(isset($_POST['update'])){
         // Define Variables
         $activity = mysqli_real_escape_string($conn, $_POST['activity']);
@@ -36,6 +36,14 @@
 
         // Update Record
         updateRecord($activity, $date, $time, $status, $id, $conn);
+    }
+
+    // When Click Delete Button for Delete an Activity
+    if(isset($_GET['delete'])){
+        $id = $_GET['delete'];
+
+        // Delete Record
+        deleteRecord($id, $conn);
     }
 
     // Insert Function
@@ -55,7 +63,7 @@
                 }
             }
             catch(Exception $e){
-                $_SESSION['msg'] = $e;
+                $_SESSION['msg'] = $e->getMessage();
                 $_SESSION['color'] = "#f32112";
                 header('location: ../index.php');
             }
@@ -66,6 +74,7 @@
     function selectRecords($conn){
         $squery = "SELECT * FROM data";
         $result = mysqli_query($conn, $squery);
+        
         // Error Handling
         try{
             if(!$result){
@@ -76,7 +85,7 @@
             }
         }
         catch(Exception $e){
-            $_SESSION['msg'] = $e;
+            $_SESSION['msg'] = $e->getMessage();
             $_SESSION['color'] = "#f32112";
             header('location: ../index.php');
         }
@@ -84,7 +93,6 @@
 
     // Update Function
     function updateRecord($activity, $date, $time, $status, $id, $conn){
-        echo '$id';
         $uquery = "UPDATE data SET activity='$activity', date1='$date', time1='$time', status1='$status' WHERE id=$id";
         
         // Error Handling
@@ -100,10 +108,30 @@
                 }
             }
             catch(Exception $e){
-                $_SESSION['msg'] = $e;
+                $_SESSION['msg'] = $e->getMessage();
                 $_SESSION['color'] = "#f32112";
                 header('location: ../index.php');
             }
+        }
+    }
+
+    // Delete Function
+    function deleteRecord($id, $conn){
+        $dquery = "DELETE FROM data WHERE id=$id";
+        
+        // Error Handling
+        try{
+            if(!mysqli_query($conn, $dquery)){
+                throw new Exception('Cannot Delete the selected record!');
+            }
+            else{
+                $_SESSION['msg'] = "Activity Succesfully Deleted!";
+                $_SESSION['color'] = "#0e5e0e";
+            }
+        }
+        catch(Exception $e){
+            $_SESSION['msg'] = $e->getMessage();
+            $_SESSION['color'] = "#f32112";
         }
     }
 ?>
