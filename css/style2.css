@@ -46,7 +46,14 @@ body{
     flex-direction: column;
 }
 
+.container .si .re{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
 .container .si .re label{
+    margin-left: 15px;
     font-size: 0.9rem;
 }
 
