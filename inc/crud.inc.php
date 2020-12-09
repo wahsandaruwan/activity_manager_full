@@ -1,7 +1,7 @@
 <!-- Crud Operations -->
 <?php
     // Start a Session
-    session_start();
+    // session_start();
     // DB Connection
     include 'dbh.inc.php';
 

@@ -1,3 +1,7 @@
+<?php
+    // Sign In Sign Up File
+    include './inc/sisu.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,6 +25,13 @@
                 </div>
                 <button type="submit" name="si">Sign In</button>
             </form>
+            <!-- Message -->
+            <?php 
+                if(isset($_SESSION['lrmsg'])){ 
+                    echo '<p style = "background:#fff; font-weight: 500; color:'.$_SESSION['color'].'; padding: 8px 12px;">'.$_SESSION['lrmsg'].'</p>';
+                    session_unset();
+                }
+            ?>
         </div>
 
         <div class="su">
@@ -29,11 +40,18 @@
                 <div class="inputs">
                     <input type="text" name="user" placeholder="Username">
                     <input type="email" name="email" placeholder="Email">
-                    <input type="password" name="user" placeholder="Password">
-                    <input type="password" name="user" placeholder="Retype Password">
+                    <input type="password" name="pass" placeholder="Password">
+                    <input type="password" name="repass" placeholder="Retype Password">
                 </div>
                 <button type="submit" name="su">Sign Up</button>
             </form>
+            <!-- Message -->
+            <?php 
+                if(isset($_SESSION['sumsg'])){ 
+                    echo '<p style = "background:#fff; font-weight: 500; color:'.$_SESSION['color'].'; padding: 8px 12px;">'.$_SESSION['sumsg'].'</p>';
+                    session_unset();
+                }
+            ?>
         </div>
     </div>
 </body>
