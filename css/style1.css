@@ -60,7 +60,7 @@ header nav .menu li{
 
 header nav .menu li a{
     text-decoration: none;
-    color: #fff;
+    color: #1c1c1c;
     font-size: 0.8rem;
     padding: 5px 8px;
     background-color: #f39c12;
@@ -110,30 +110,29 @@ header nav .menu li a:hover{
     padding: 5px 20px;
     background: #fff;
     outline: none;
-    font-size: 1rem;
+    font-size: 0.85rem;
 }
 
 .inputfrm .ui label{
     width: 20%;
     color: #fff;
-    font-size: 1rem;
+    font-size: 0.9rem;
     margin-right: 10px;
 }
 
 /* Button */
-.inputfrm .ui .sbtn{
+.inputfrm .ui button{
     width: 100%;
-    background: #f37f12;
+    background: #f39c12;
     padding: 10px 20px;
-    text-align: center;
     color: #1c1c1c;
+    font-size: 0.85rem;
     border: none;
-    font-size: 1rem;
     cursor: pointer;
     transition: all 0.3s ease-in;
 }
 
-.inputfrm .ui .sbtn:hover{
+.inputfrm .ui button:hover{
     background: #95a5a6;
 }
 
@@ -161,27 +160,25 @@ header nav .menu li a:hover{
 
 .tab .search input{
     width: 70%;
-    font-size: 1rem;
+    font-size: 0.85rem;
     padding: 5px 20px;
     border: none;
     outline: none;
     height: 35px;
 }
 
-.tab .search a{
+.tab .search button{
     width: 25%;
     height: 35px;
-    text-decoration: none;
     color: #1c1c1c;
     background: #f39c12;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1rem;
+    cursor: pointer;
+    border: none;
+    font-size: 0.85rem;
     transition: all 0.3s ease-in; 
 }
 
-.tab .search a:hover{
+.tab .search button:hover{
     background: #95a5a6;
 }
 
@@ -239,7 +236,7 @@ header nav .menu li a:hover{
 }
 
 /* ---------Responsive---------- */
-@media(max-width: 1040px){
+@media(max-width: 1160px){
     /* -------Navigation------- */
     header nav{
         width: 100%;
@@ -259,7 +256,6 @@ header nav .menu li a:hover{
     .container{
         width: 80%;
         display: block;
-
     }
 
     .container .inputfrm,
@@ -282,6 +278,11 @@ header nav .menu li a:hover{
 }
 
 @media(max-width: 550px){
+    /* -------Navigation------- */
+    header nav .menu li a{
+        font-size: 0.7rem;
+    }
+
     /* -------Container------- */
     .container{
         width: 98%;

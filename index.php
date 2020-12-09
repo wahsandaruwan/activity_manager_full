@@ -39,7 +39,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Activity Management</title>
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="css/style1.css">
 </head>
 <body>
     <!-- Header -->
@@ -47,8 +47,8 @@
         <nav>
             <div class="logo">Activity <span>Manager</span></div>
             <ul class="menu">
-                <li><a href="#">Help</a></li>
-                <li><a href="./index.php">Refresh</a></li>
+                <li><a href="./si-su.php">SigIn / SignUp</a></li>
+                <li><a href="./index.php">Download as CSV</a></li>
             </ul>
         </nav>
     </header>
@@ -114,7 +114,7 @@
             <!-- Search -->
             <div class="search">
                 <input type="text" placeholder = "Search...">
-                <a href="#">Search</a>
+                <button>Search</button>
             </div>
             <!-- Actual Table -->
             <div class = "main">
