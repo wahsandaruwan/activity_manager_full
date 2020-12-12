@@ -51,7 +51,7 @@
         $iquery = "INSERT INTO data(activity,date1,time1,status1) VALUES('$activity','$date','$time','$status')";
         
         // Error Handling
-        if(!empty($activity) || !empty($date) || !empty($time) || !empty($status)){
+        if(!empty($activity) && !empty($date) && !empty($time) && !empty($status)){
             try{
                 if(!mysqli_query($conn, $iquery)){
                     throw new Exception('Cannot insert the data into database!');

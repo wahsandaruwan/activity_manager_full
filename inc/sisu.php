@@ -25,13 +25,13 @@
     // Sign up info validation Function 
     function signUpValidation($conn,$user,$pass,$email,$repass){
         // Check If Inputs are Empty
-        if(!empty($user) || !empty($pass) || !empty($email) || !empty($repass)){
+        if(!empty($user) && !empty($pass) && !empty($email) && !empty($repass)){
             $suquery1 = "SELECT * FROM users WHERE username = '$user'";
             $suquery2 = "SELECT * FROM users WHERE email = '$email'";
             $result1 = mysqli_query($conn, $suquery1);
             $result2 = mysqli_query($conn, $suquery2);
 
-            // Validate results
+            // Error Handling
             try{
                 if(!$result1 || !$result2){
                     throw new Exception('Cannot fetch data from the database!');
@@ -54,9 +54,16 @@
                         // Check the password
                         if($pass == $repass){
                             if(strlen($pass) > 5){
-                                $_SESSION['sumsg'] = "Type dsfff email!";
-                                $_SESSION['color'] = "#f32112";
-                                header('location: ../si-su.php');
+                                // Check Email
+                                if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                                    // Calling SignUp Function
+                                    signUp($conn,$user,$pass,$email);
+                                } 
+                                else {
+                                    $_SESSION['sumsg'] = "Enter a valid email!";
+                                    $_SESSION['color'] = "#f32112";
+                                    header('location: ../si-su.php');
+                                }
                             }
                             else{
                                 $_SESSION['sumsg'] = "Enter a password that has more than 5 characters";
@@ -80,7 +87,7 @@
             }
         }
         else{
-            $_SESSION['sumsg'] = "ghfhfghfgjfjfj";
+            $_SESSION['sumsg'] = "Please fill all fields!";
             $_SESSION['color'] = "#f32112";
             header('location: ../si-su.php');
         }
@@ -88,6 +95,21 @@
 
     // Sign Up Function
     function signUp($conn,$user,$pass,$email){
-        $iquery = "INSERT INTO data(activity,date1,time1,status1) VALUES('$activity','$date','$time','$status')";
+        $iquery = "INSERT INTO users(username,email,pass) VALUES('$user','$email','$pass')";
+        
+        // Error Handling
+        try{
+            if(!mysqli_query($conn, $iquery)){
+                throw new Exception('Cannot signup properly due to database issue!');
+            }
+            else{
+                header('location: ../index.php');
+            }
+        }
+        catch(Exception $e){
+            $_SESSION['sumsg'] = $e->getMessage();
+            $_SESSION['color'] = "#f32112";
+            header('location: ../si-su.php');
+        }
     }
 ?>

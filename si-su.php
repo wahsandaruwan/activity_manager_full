@@ -39,7 +39,7 @@
             <form action="./inc/sisu.php" method="POST">
                 <div class="inputs">
                     <input type="text" name="user" placeholder="Username">
-                    <input type="email" name="email" placeholder="Email">
+                    <input type="text" name="email" placeholder="Email">
                     <input type="password" name="pass" placeholder="Password">
                     <input type="password" name="repass" placeholder="Retype Password">
                 </div>
