@@ -14,6 +14,10 @@ body{
     height: 100vh;
 }
 
+.diselement{
+    pointer-events: none;
+}
+
 /* -------Header------- */
 header{
     width: 100%;
@@ -232,6 +236,19 @@ header nav .menu li a:hover{
 
 .tab table tr td a:hover{
     background: #95a5a6;
+    color: #1c1c1c;
+}
+
+/* User Name */
+.tab .user{
+    width: 100%;
+}
+
+.tab .user p{
+    margin-top: 10px;
+    text-align: right;
+    padding: 6px;
+    background-color: #fff;
     color: #1c1c1c;
 }
 

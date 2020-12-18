@@ -1,9 +1,11 @@
 <!-- Crud Operations -->
 <?php
     // Start a Session
-    // session_start();
     // DB Connection
     include 'dbh.inc.php';
+    $_SESSION['dd'] = "fdddddddd";
+
+    // include 'sisu.php';
 
     // Initialize Variables
     $activity = "";
@@ -68,11 +70,17 @@
                 header('location: ../index.php');
             }
         }
+        else{
+            $_SESSION['sumsg'] = "Fill all given fields!";
+            $_SESSION['color'] = "#f32112";
+            header('location: ../index.php');
+            echo $_SESSION['sumsg'];
+        }
     }
 
     // Select Function
     function selectRecords($conn){
-        $squery = "SELECT * FROM data";
+        $squery = "SELECT * FROM data ORDER BY id ASC";
         $result = mysqli_query($conn, $squery);
 
         // Error Handling
@@ -96,7 +104,7 @@
         $uquery = "UPDATE data SET activity='$activity', date1='$date', time1='$time', status1='$status' WHERE id=$id";
         
         // Error Handling
-        if(!empty($activity) || !empty($date) || !empty($time) || !empty($status) || !empty($id)){
+        if(!empty($activity) && !empty($date) && !empty($time) && !empty($status) && !empty($id)){
             try{
                 if(!mysqli_query($conn, $uquery)){
                     throw new Exception('Cannot update the data of the selected record!');
@@ -112,6 +120,11 @@
                 $_SESSION['color'] = "#f32112";
                 header('location: ../index.php');
             }
+        }
+        else{
+            $_SESSION['msg'] = "Fill all given fields!";
+            $_SESSION['color'] = "#f32112";
+            header('location: ../index.php');
         }
     }
 

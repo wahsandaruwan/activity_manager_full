@@ -29,7 +29,7 @@
             <?php 
                 if(isset($_SESSION['lrmsg'])){ 
                     echo '<p style = "background:#fff; font-weight: 500; color:'.$_SESSION['color'].'; padding: 8px 12px;">'.$_SESSION['lrmsg'].'</p>';
-                    session_unset();
+                    // session_unset();
                 }
             ?>
         </div>
@@ -47,9 +47,9 @@
             </form>
             <!-- Message -->
             <?php 
-                if(isset($_SESSION['sumsg'])){ 
-                    echo '<p style = "background:#fff; font-weight: 500; color:'.$_SESSION['color'].'; padding: 8px 12px;">'.$_SESSION['sumsg'].'</p>';
-                    session_unset();
+                if(isset($_SESSION['sumsg'])){ ?>
+                    <p style = "background:#fff; font-weight: 500; color:<?php echo $_SESSION['color'] ?>; padding: 8px 12px;"><?php echo $_SESSION['sumsg'] ?></p>
+                <?php unset($_SESSION['sumsg']);
                 }
             ?>
         </div>

@@ -3,6 +3,10 @@
     include './inc/dbh.inc.php';
     // CRUD File
     include './inc/crud.inc.php';
+    // Sign In Sign Up File
+    include './inc/sisu.php';
+
+    $_SESSION['sumsg']= "";
 
     // Fetch the Record to be Updated
     if(isset($_GET['edit'])){
@@ -47,14 +51,23 @@
         <nav>
             <div class="logo">Activity <span>Manager</span></div>
             <ul class="menu">
-                <li><a href="./si-su.php">SigIn / SignUp</a></li>
-                <li><a href="./index.php">Download as CSV</a></li>
+                <?php
+                    if(isset($_SESSION['username'])){ ?>
+                        <li><a href="./index.php?logout='1'">Sign Out</a></li>
+                        <li><a href="./index.php">Download as CSV</a></li>
+                <?php
+                    }
+                    else{ ?>
+                        <li><a href="./si-su.php">SigIn / SignUp</a></li>
+                <?php
+                    }
+                ?>
             </ul>
         </nav>
     </header>
 
     <!-- Container -->
-    <div class="container">
+    <div class="container<?php if(!isset($_SESSION['username'])) echo ' diselement';?>">
         <!-- Form Section -->
         <div class="inputfrm">
             <form action="./inc/crud.inc.php" method = "POST">
@@ -89,10 +102,11 @@
                 </div>
 
                 <div class="ui">
-                    <?php if($edit_state ==  false){ ?>
+                    <?php
+                        if($edit_state ==  false){ ?>
                             <button type="submit" name="save" class="sbtn">Save Activity</button>
                     <?php }
-                          else{ ?>
+                        else{ ?>
                             <button type="submit" name="update" class="sbtn">Update Activity</button>
                     <?php } ?>
                 </div>
@@ -103,8 +117,10 @@
                 <?php 
                     if(isset($_SESSION['msg'])){ 
                         echo '<p style = "background:#fff; font-weight: 500; color:'.$_SESSION['color'].'; padding: 8px 12px;">'.$_SESSION['msg'].'</p>';
-                        session_unset();
+                        unset($_SESSION['msg']);
+                        
                     }
+                    echo 'dfdgdg';
                 ?>
             </div>
         </div>
@@ -131,24 +147,32 @@
 
                     <tbody>
                         <?php 
-                        // Populate Table
-                        $result = selectRecords($conn);
-                        while($row = mysqli_fetch_array($result)) {
+                            // Populate table if user logged in
+                            if(isset($_SESSION['username'])){
+                                $result = selectRecords($conn);
+                                while($row = mysqli_fetch_array($result)) {
+                                ?>
+                                    <tr>
+                                        <td><?php echo $row['id']; ?></td>
+                                        <td><?php echo $row['activity']; ?></td>
+                                        <td><?php echo $row['date1']; ?></td>
+                                        <td><?php echo $row['time1']; ?></td>
+                                        <td><?php echo $row['status1']; ?></td>
+                                        <td><a href="index.php?edit=<?php echo $row['id']; ?>" class="edit">Edit</a></td>
+                                        <td><a href="index.php?delete=<?php echo $row['id']; ?>" class="delete">Delete</a></td>
+                                    </tr>                                    
+                                <?php } 
+                            }
                         ?>
-                            <tr>
-                                <td><?php echo $row['id']; ?></td>
-                                <td><?php echo $row['activity']; ?></td>
-                                <td><?php echo $row['date1']; ?></td>
-                                <td><?php echo $row['time1']; ?></td>
-                                <td><?php echo $row['status1']; ?></td>
-                                <td><a href="index.php?edit=<?php echo $row['id']; ?>" class="edit">Edit</a></td>
-                                <td><a href="index.php?delete=<?php echo $row['id']; ?>" class="delete">Delete</a></td>
-                            </tr>
-                        <?php } ?>
                     </tbody>
                 </table>
             </div>
+            <!-- User Name -->
+            <div class="user">
+                <?php if(isset($_SESSION['username'])) echo '<p>Username : '.$_SESSION['username'].'</p>' ?>
+            </div>
         </div>
+        
     </div>
 </body>
 </html>

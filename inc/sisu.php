@@ -22,6 +22,15 @@
         signUpValidation($conn,$user,$pass,$email,$repass);
     }
 
+    // Sign Out
+    if(isset($_GET['logout'])){
+        session_destroy();
+        unset($_SESSION['username']);
+        $_SESSION['msg'] = "You are now logged out!";
+        $_SESSION['color'] = "#0e5e0e";
+        header('location: ./index.php');
+    }
+
     // Sign up info validation Function 
     function signUpValidation($conn,$user,$pass,$email,$repass){
         // Check If Inputs are Empty
@@ -93,9 +102,11 @@
         }
     }
 
-    // Sign Up Function
+    // SignUp Function
     function signUp($conn,$user,$pass,$email){
-        $iquery = "INSERT INTO users(username,email,pass) VALUES('$user','$email','$pass')";
+        // Encrypt password
+        $enpass = md5($pass); 
+        $iquery = "INSERT INTO users(username,email,pass) VALUES('$user','$email','$enpass')";
         
         // Error Handling
         try{
@@ -103,13 +114,18 @@
                 throw new Exception('Cannot signup properly due to database issue!');
             }
             else{
+                $_SESSION['username'] = $user;
+                $_SESSION['msg'] = "You are now logged in!";
+                $_SESSION['color'] = "#0e5e0e";
                 header('location: ../index.php');
             }
-        }
+        } 
         catch(Exception $e){
             $_SESSION['sumsg'] = $e->getMessage();
             $_SESSION['color'] = "#f32112";
             header('location: ../si-su.php');
         }
     }
+
+    
 ?>
