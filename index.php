@@ -163,6 +163,11 @@
                                     </tr>                                    
                                 <?php } 
                             }
+                            else{ ?>
+                                <tr>
+                                    <td colspan="7"><p class="sisunot">Sign In or Sign Up to use the App</p></td>
+                                </tr>
+                            <?php }
                         ?>
                     </tbody>
                 </table>
