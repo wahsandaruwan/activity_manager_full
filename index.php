@@ -6,8 +6,6 @@
     // Sign In Sign Up File
     include './inc/sisu.php';
 
-    $_SESSION['sumsg']= "";
-
     // Fetch the Record to be Updated
     if(isset($_GET['edit'])){
         $id = $_GET['edit'];
@@ -27,8 +25,6 @@
                 $date = $record['date1'];
                 $time = $record['time1'];
                 $status = $record['status1'];
-
-                $_SESSION['id'] = $record['id'];
             }
         }
         catch(Exception $e){
@@ -44,6 +40,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Activity Management</title>
     <link rel="stylesheet" href="css/style1.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
 </head>
 <body>
     <!-- Header -->
@@ -54,7 +51,8 @@
                 <?php
                     if(isset($_SESSION['username'])){ ?>
                         <li><a href="./index.php?logout='1'">Sign Out</a></li>
-                        <li><a href="./index.php">Download as CSV</a></li>
+                        <li><a href="#">Get CSV</a></li>
+                        <li class="ref"><a href="./index.php"><i class="fas fa-sync"></i></a></li>
                 <?php
                     }
                     else{ ?>
@@ -73,7 +71,7 @@
             <form action="./inc/crud.inc.php" method = "POST">
                 <div class="ui">
                     <label>ID : </label>
-                    <input type="text" name = "id" value = "<?php echo $id; ?>" disabled>
+                    <input type="text" name = "id" value = "<?php echo $id; ?>" class="diselement">
                 </div>
 
                 <div class="ui">
@@ -115,12 +113,10 @@
             <!-- Message -->
             <div class="msg" name="message">
                 <?php 
-                    if(isset($_SESSION['msg'])){ 
-                        echo '<p style = "background:#fff; font-weight: 500; color:'.$_SESSION['color'].'; padding: 8px 12px;">'.$_SESSION['msg'].'</p>';
-                        unset($_SESSION['msg']);
-                        
+                    if(isset($_GET['msg']) && isset($_GET['color'])){
+                        echo '<p style = "background:#fff; font-weight: 500; color:#'.$_GET['color'].'; padding: 8px 12px;">'.$_GET['msg'].'</p>';
+                       //  unset($_SESSION['sumsg']);
                     }
-                    echo 'dfdgdg';
                 ?>
             </div>
         </div>
@@ -177,7 +173,6 @@
                 <?php if(isset($_SESSION['username'])) echo '<p>Username : '.$_SESSION['username'].'</p>' ?>
             </div>
         </div>
-        
     </div>
 </body>
 </html>

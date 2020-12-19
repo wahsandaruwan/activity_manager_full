@@ -26,9 +26,7 @@
     if(isset($_GET['logout'])){
         session_destroy();
         unset($_SESSION['username']);
-        $_SESSION['msg'] = "You are now logged out!";
-        $_SESSION['color'] = "#0e5e0e";
-        header('location: ./index.php');
+        header('location: ./index.php?msg=You are now logged out!&color=0e5e0e');
     }
 
     // Sign up info validation Function 
@@ -50,14 +48,10 @@
                     $count1 = mysqli_num_rows($result1);
                     $count2 = mysqli_num_rows($result2);
                     if($count1 >= 1){
-                        $_SESSION['sumsg'] = "Type different username!";
-                        $_SESSION['color'] = "#f32112";
-                        header('location: ../si-su.php');
+                        header('location: ../si-su.php?sumsg=Type different username!&color=f32112');
                     }
                     else if($count2 >= 1){
-                        $_SESSION['sumsg'] = "Type different email!";
-                        $_SESSION['color'] = "#f32112";
-                        header('location: ../si-su.php');
+                        header('location: ../si-su.php?sumsg=Type different email!&color=f32112');
                     }
                     else{
                         // Check the password
@@ -69,36 +63,26 @@
                                     signUp($conn,$user,$pass,$email);
                                 } 
                                 else {
-                                    $_SESSION['sumsg'] = "Enter a valid email!";
-                                    $_SESSION['color'] = "#f32112";
-                                    header('location: ../si-su.php');
+                                    header('location: ../si-su.php?sumsg=Enter a valid email!&color=f32112');
                                 }
                             }
                             else{
-                                $_SESSION['sumsg'] = "Enter a password that has more than 5 characters";
-                                $_SESSION['color'] = "#f32112";
-                                header('location: ../si-su.php');
+                                header('location: ../si-su.php?sumsg=Enter a password that has more than 5 characters!&color=f32112');
                             }
                         }
                         else{
-                            $_SESSION['sumsg'] = "Type same password in 'Re-Type Password' box!";
-                            $_SESSION['color'] = "#f32112";
-                            header('location: ../si-su.php');
+                            header('location: ../si-su.php?sumsg=Type same password in "Re-Type Password" box!&color=f32112');
                         }
                         
                     }
                 }
             }
             catch(Exception $e){
-                $_SESSION['sumsg'] = $e->getMessage();
-                $_SESSION['color'] = "#f32112";
-                header('location: ../si-su.php');
+                header('location: ../si-su.php?sumsg='.$e->getMessage().'&color=f32112');
             }
         }
         else{
-            $_SESSION['sumsg'] = "Please fill all fields!";
-            $_SESSION['color'] = "#f32112";
-            header('location: ../si-su.php');
+            header('location: ../si-su.php?sumsg=Please fill all fields!&color=f32112');
         }
     }
 
@@ -115,15 +99,11 @@
             }
             else{
                 $_SESSION['username'] = $user;
-                $_SESSION['msg'] = "You are now logged in!";
-                $_SESSION['color'] = "#0e5e0e";
-                header('location: ../index.php');
+                header('location: ../index.php?msg=You are now logged in!&color=0e5e0e');
             }
         } 
         catch(Exception $e){
-            $_SESSION['sumsg'] = $e->getMessage();
-            $_SESSION['color'] = "#f32112";
-            header('location: ../si-su.php');
+            header('location: ../si-su.php?sumsg='.$e->getMessage().'&color=f32112');
         }
     }
 

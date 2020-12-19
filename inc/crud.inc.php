@@ -1,9 +1,9 @@
 <!-- Crud Operations -->
 <?php
     // Start a Session
+    // session_start();
     // DB Connection
     include 'dbh.inc.php';
-    $_SESSION['dd'] = "fdddddddd";
 
     // include 'sisu.php';
 
@@ -34,7 +34,8 @@
         $date = mysqli_real_escape_string($conn, $_POST['date']);
         $time = mysqli_real_escape_string($conn, $_POST['time']);
         $status = mysqli_real_escape_string($conn, $_POST['status']);
-        $id = $_SESSION['id'];
+        $id = mysqli_real_escape_string($conn, $_POST['id']);
+        // $id = $_GET['edit'];
 
         // Update Record
         updateRecord($activity, $date, $time, $status, $id, $conn);
@@ -59,22 +60,15 @@
                     throw new Exception('Cannot insert the data into database!');
                 }
                 else{
-                    $_SESSION['msg'] = "Activity Succesfully Added!";
-                    $_SESSION['color'] = "#0e5e0e";
-                    header('location: ../index.php');
+                    header('location: ../index.php?msg=Activity Succesfully Added!&color=0e5e0e');
                 }
             }
             catch(Exception $e){
-                $_SESSION['msg'] = $e->getMessage();
-                $_SESSION['color'] = "#f32112";
-                header('location: ../index.php');
+                header('location: ../index.php?msg='.$e->getMessage().'&color=f32112');
             }
         }
         else{
-            $_SESSION['sumsg'] = "Fill all given fields!";
-            $_SESSION['color'] = "#f32112";
-            header('location: ../index.php');
-            echo $_SESSION['sumsg'];
+            header('location: ../index.php?msg=Fill all given fields!&color=f32112');
         }
     }
 
@@ -93,9 +87,7 @@
             }
         }
         catch(Exception $e){
-            $_SESSION['msg'] = $e->getMessage();
-            $_SESSION['color'] = "#f32112";
-            header('location: ../index.php');
+            header('location: ../index.php?msg='.$e->getMessage().'&color=f32112');
         }
     }
 
@@ -110,21 +102,15 @@
                     throw new Exception('Cannot update the data of the selected record!');
                 }
                 else{
-                    $_SESSION['msg'] = "Activity Succesfully Updated!";
-                    $_SESSION['color'] = "#0e5e0e";
-                    header('location: ../index.php');
+                    header('location: ../index.php?msg=Activity Succesfully Updated!&color=0e5e0e');
                 }
             }
             catch(Exception $e){
-                $_SESSION['msg'] = $e->getMessage();
-                $_SESSION['color'] = "#f32112";
-                header('location: ../index.php');
+                header('location: ../index.php?msg='.$e->getMessage().'&color=f32112');
             }
         }
         else{
-            $_SESSION['msg'] = "Fill all given fields!";
-            $_SESSION['color'] = "#f32112";
-            header('location: ../index.php');
+            header('location: ../index.php?msg=Fill l given fields!&color=f32112');
         }
     }
 
@@ -138,13 +124,11 @@
                 throw new Exception('Cannot Delete the selected record!');
             }
             else{
-                $_SESSION['msg'] = "Activity Succesfully Deleted!";
-                $_SESSION['color'] = "#0e5e0e";
+                header('location: ../index.php?msg=Activity Succesfully Deleted!&color=0e5e0e');
             }
         }
         catch(Exception $e){
-            $_SESSION['msg'] = $e->getMessage();
-            $_SESSION['color'] = "#f32112";
+            header('location: ../index.php?msg='.$e->getMessage().'&color=f32112');
         }
     }
 
