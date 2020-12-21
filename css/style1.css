@@ -162,10 +162,13 @@ header nav .menu li a:hover{
 /* Search */
 .tab .search{
     width: 100%;
+    margin-bottom: 10px;
+}
+
+.tab .search form{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
 }
 
 .tab .search input{

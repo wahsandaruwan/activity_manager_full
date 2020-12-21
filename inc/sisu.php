@@ -2,7 +2,7 @@
     // Start a Session
     session_start();
     // DB Connection
-    include 'dbh.inc.php';
+    require_once 'dbh.inc.php';
 
     // Sign In
     if(isset($_POST['si'])){
@@ -99,7 +99,7 @@
             }
             else{
                 $_SESSION['username'] = $user;
-                header('location: ../index.php?msg=You are now logged in!&color=0e5e0e');
+                header('location: ../index.php?user='.$_SESSION["username"].'&msg=You are now logged in!&color=0e5e0e');
             }
         } 
         catch(Exception $e){

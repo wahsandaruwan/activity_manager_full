@@ -1,10 +1,10 @@
 <?php
     // DB Connection
-    include './inc/dbh.inc.php';
+    require_once './inc/dbh.inc.php';
     // CRUD File
-    include './inc/crud.inc.php';
+    require_once './inc/crud.inc.php';
     // Sign In Sign Up File
-    include './inc/sisu.php';
+    require_once './inc/sisu.php';
 
     // Fetch the Record to be Updated
     if(isset($_GET['edit'])){
@@ -51,7 +51,7 @@
                 <?php
                     if(isset($_SESSION['username'])){ ?>
                         <li><a href="./index.php?logout='1'">Sign Out</a></li>
-                        <li><a href="#">Get CSV</a></li>
+                        <li><a href="./sample.php">Get CSV</a></li>
                         <li class="ref"><a href="./index.php"><i class="fas fa-sync"></i></a></li>
                 <?php
                     }
@@ -99,6 +99,9 @@
                     </select>
                 </div>
 
+                <!-- For Username -->
+                <input type="hidden" name="un" value="<?php if(isset($_SESSION['username'])) echo $_SESSION['username']; ?>">
+
                 <div class="ui">
                     <?php
                         if($edit_state ==  false){ ?>
@@ -115,7 +118,6 @@
                 <?php 
                     if(isset($_GET['msg']) && isset($_GET['color'])){
                         echo '<p style = "background:#fff; font-weight: 500; color:#'.$_GET['color'].'; padding: 8px 12px;">'.$_GET['msg'].'</p>';
-                       //  unset($_SESSION['sumsg']);
                     }
                 ?>
             </div>
@@ -125,14 +127,16 @@
         <div class="tab">
             <!-- Search -->
             <div class="search">
-                <input type="text" placeholder = "Search...">
-                <button>Search</button>
+                <form action="./inc/crud.inc.php" method="POST">
+                    <input type="text" placeholder = "Search...">
+                    <button type="submit" name="search">Search</button>
+                </form>
             </div>
             <!-- Actual Table -->
             <div class = "main">
                 <table>
                     <tr>
-                        <th>ID</th>
+                        <th>No</th>
                         <th>Activity</th>
                         <th>Date</th>
                         <th>Time</th>
@@ -145,19 +149,22 @@
                         <?php 
                             // Populate table if user logged in
                             if(isset($_SESSION['username'])){
-                                $result = selectRecords($conn);
+                                $count = 1;
+                                $result = selectRecords($_SESSION["username"], $conn);
                                 while($row = mysqli_fetch_array($result)) {
                                 ?>
                                     <tr>
-                                        <td><?php echo $row['id']; ?></td>
+                                        <td><?php echo $count; ?></td>
                                         <td><?php echo $row['activity']; ?></td>
                                         <td><?php echo $row['date1']; ?></td>
                                         <td><?php echo $row['time1']; ?></td>
                                         <td><?php echo $row['status1']; ?></td>
                                         <td><a href="index.php?edit=<?php echo $row['id']; ?>" class="edit">Edit</a></td>
-                                        <td><a href="index.php?delete=<?php echo $row['id']; ?>" class="delete">Delete</a></td>
+                                        <td><a href="index.php?delete=<?php echo $row['id']; ?>&user=<?php echo $_SESSION['username']; ?>" class="delete">Delete</a></td>
                                     </tr>                                    
-                                <?php } 
+                                <?php 
+                                    $count++;
+                                } 
                             }
                             else{ ?>
                                 <tr>

@@ -1,6 +1,7 @@
 <?php
+    session_start();
     // Sign In Sign Up File
-    include './inc/sisu.php';
+    // include './inc/sisu.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,7 +30,6 @@
             <?php 
                 if(isset($_SESSION['lrmsg'])){ 
                     echo '<p style = "background:#fff; font-weight: 500; color:'.$_SESSION['color'].'; padding: 8px 12px;">'.$_SESSION['lrmsg'].'</p>';
-                    // session_unset();
                 }
             ?>
         </div>
