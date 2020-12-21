@@ -98,6 +98,7 @@
                 throw new Exception('Cannot signup properly due to database issue!');
             }
             else{
+                // Create a session variable
                 $_SESSION['username'] = $user;
                 header('location: ../index.php?user='.$_SESSION["username"].'&msg=You are now logged in!&color=0e5e0e');
             }

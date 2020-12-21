@@ -1,7 +1,6 @@
 <?php
+    // Start a session
     session_start();
-    // Sign In Sign Up File
-    // include './inc/sisu.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
