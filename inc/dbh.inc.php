@@ -14,6 +14,6 @@
         }
     }
     catch(Exception $e){
-        header('location: ../activity/index.php?dbcon=fail');
+        header('location: ./index.php?dbmsg='.$e->getMessage());
     }
 ?>

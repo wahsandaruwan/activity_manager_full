@@ -1,7 +1,7 @@
 <?php
     // ---Include Neccessary Files---
     // DB Connection
-    require_once './inc/dbh.inc.php';
+    // include_once './inc/dbh.inc.php';
     // CRUD
     require_once './inc/crud.inc.php';
     // Sign In and Sign Up
