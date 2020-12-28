@@ -14,7 +14,7 @@
     <div class="container">
         <div class="si">
             <h3>Sign In</h3>
-            <form action="./inc/crud.inc.php" method="POST">
+            <form action="./inc/process.inc.php" method="POST">
                 <div class="inputs">
                     <input type="text" name="user" placeholder="Username">
                     <input type="password" name="pass" placeholder="Password">
@@ -35,7 +35,7 @@
 
         <div class="su">
             <h3>Sign Up</h3>
-            <form action="./inc/crud.inc.php" method="POST">
+            <form action="./inc/process.inc.php" method="POST">
                 <div class="inputs">
                     <input type="text" name="user" placeholder="Username">
                     <input type="text" name="email" placeholder="Email">

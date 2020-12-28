@@ -1,11 +1,11 @@
 <?php
     // ---Include Neccessary Files---
-    // CRUD
-    require_once './inc/crud.inc.php';
+    // Process
+    require_once './inc/process.inc.php';
     // Functions
     require_once './inc/functions.inc.php';
 
-    // Fetch the Record to be Updated
+    // Fetch the record to be updated
     if(isset($_GET['edit'])){
         $id = $_GET['edit'];
         $edit_state = true;
@@ -67,7 +67,7 @@
     <div class="container<?php if(!isset($_SESSION['username'])) echo ' diselement';?>">
         <!-- Form Section -->
         <div class="inputfrm">
-            <form action="./inc/crud.inc.php" method = "POST">
+            <form action="./inc/process.inc.php" method = "POST">
                 <div class="ui">
                     <label>ID : </label>
                     <input type="text" name = "id" value = "<?php echo $id; ?>" class="diselement">

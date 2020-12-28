@@ -1,4 +1,4 @@
-<!-- Crud Operations -->
+<!-- Process Operations -->
 <?php
     // ---Include Neccessary Files---
     // DB connection
