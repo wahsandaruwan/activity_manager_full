@@ -1,11 +1,7 @@
 <?php
     // ---Include Neccessary Files---
-    // DB Connection
-    // include_once './inc/dbh.inc.php';
     // CRUD
     require_once './inc/crud.inc.php';
-    // Sign In and Sign Up
-    require_once './inc/sisu.php';
     // Functions
     require_once './inc/functions.inc.php';
 
@@ -102,9 +98,7 @@
                     </select>
                 </div>
 
-                <!-- For Username -->
-                <input type="hidden" name="un" value="<?php if(isset($_SESSION['username'])) echo $_SESSION['username']; ?>">
-
+                <!-- Save and Update activity button -->
                 <div class="ui">
                     <?php
                         if($edit_state ==  false){ ?>
@@ -135,7 +129,7 @@
                     <button type="submit" name="search">Search</button>
                 </form>
             </div>
-            <!-- Actual Table -->
+            <!-- Actual table -->
             <div class = "main">
                 <table>
                     <tr>
@@ -154,15 +148,15 @@
                             if(isset($_SESSION['username'])){
                                 $count = 1;
                                 $result = "";
-                                // For Search specific record
+                                // For search specific record
                                 if(isset($_POST['search'])){
                                     $search = mysqli_real_escape_string($conn, $_POST['setext']);
-                                    // Search Records
+                                    // Search records
                                     $result = searchRecord($search, $_SESSION["username"], $conn);
                                 }
-                                // For Select all records
+                                // For select all records
                                 else{
-                                    // Select Records
+                                    // Select records
                                     $result = selectRecords($_SESSION["username"], $conn);  
                                 }
 
@@ -191,7 +185,7 @@
                     </tbody>
                 </table>
             </div>
-            <!-- User Name -->
+            <!-- Username -->
             <div class="user">
                 <?php if(isset($_SESSION['username'])) echo '<p>Username : '.$_SESSION['username'].'</p>' ?>
             </div>
